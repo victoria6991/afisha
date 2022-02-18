@@ -2,40 +2,55 @@ package ru.netology.manager;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import ru.netology.domain.Movie;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class MovieManager {
-    private Movie[] movies = new Movie[0];
+    private String[] movies = {"Сумерки", "Сумерки2", "Сумерки3", "Сумерки4", "Бладшот", "Вперёд", "Отель Белград", "Джентельмены", "Человек-Невидимка", "Тролли", "Номер один"};
+    private int resultLength;
 
+    public MovieManager() {
+        this.resultLength = 10;
+    }
 
-//    public MovieManager(int movies) {      нужен какой-то такой констуктор или это фигня какая-то??..
-//        this.movies = new Movie[4];
-//    }
+    public MovieManager(int resultLength) {
+        this.resultLength = resultLength;
+    }
 
-    public void addMovie(Movie movie) {
+    public int getResultLength() {
+        return resultLength;
+    }
+
+    public void setResultLength(int resultLength) {
+        this.resultLength = resultLength;
+    }
+
+    public String[] addMovie(String movie) {
         int length = movies.length + 1;
-        Movie[] tmp = new Movie[length];
+        String[] tmp = new String[length];
         System.arraycopy(movies, 0, tmp, 0, movies.length);
         int newMovie = tmp.length - 1;
         tmp[newMovie] = movie;
         movies = tmp;
+        return tmp;
     }
 
-    public Movie[] findAll() {
+    public String[] findAll() {
         return movies;
     }
 
-    public Movie[] returnLastViewed() {
-        Movie[] movies = findAll();
-        Movie[] newMovies = new Movie[movies.length];
-        for (int i = 0; i < newMovies.length; i++) {
-            int index = movies.length - i - 1;
-            newMovies[i] = movies[index];
+    public String[] returnLastAddedFromTheEnd() {
+        int resultLength = getResultLength();
+        if (movies.length >= resultLength) {
+            resultLength = this.resultLength;
+        } else {
+            resultLength = 10;
         }
-        return newMovies;
+        String[] result = new String[resultLength];
+        for (int i = 0; i < result.length; i++) {
+            int index = movies.length - i - 1;
+            result[i] = movies[index];
+        }
+        return result;
     }
 }

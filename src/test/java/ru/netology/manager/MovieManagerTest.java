@@ -1,56 +1,65 @@
 package ru.netology.manager;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import ru.netology.domain.Movie;
-import ru.netology.manager.MovieManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MovieManagerTest {
 
-    Movie first = new Movie(1, "Бладшот", "боевик");
-    Movie second = new Movie(2, "Вперёд", "мультфильм");
-    Movie third = new Movie(3, "Отель 'Белград'", "комедия");
-    Movie forth = new Movie(4, "Джентельмены", "боевик");
-    Movie fifth = new Movie(5, "Человек-невидимка", "ужасы");
-    Movie sixth = new Movie(6, "Тролли.Мировой тур", "мультфильм");
-    Movie seventh = new Movie(7, "Номер один", "комедия");
-
-    MovieManager manager = new MovieManager();
-
-    @BeforeEach
-    void save() {
-        manager.addMovie(first);
-        manager.addMovie(second);
-        manager.addMovie(third);
-        manager.addMovie(forth);
-        manager.addMovie(fifth);
-        manager.addMovie(sixth);
-        manager.addMovie(seventh);
-    }
-
     @Test
-    public void showAll() {
-        manager.findAll();
-        Movie[] expected = {first, second, third, forth, fifth, sixth, seventh};
-        Movie[] actual = manager.findAll();
+    public void shouldShowAll() {
+        MovieManager manager = new MovieManager();
+        String[] expected = {"Сумерки", "Сумерки2", "Сумерки3", "Сумерки4", "Бладшот", "Вперёд", "Отель Белград", "Джентельмены", "Человек-Невидимка", "Тролли", "Номер один"};
+        String[] actual = manager.findAll();
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void showLastAddedAll() {
-        Movie[] expected = {seventh, sixth, fifth, forth, third, second, first};
-        Movie[] actual = manager.returnLastViewed();
+    public void shouldAddNew() {
+        MovieManager manager = new MovieManager();
+        String[] expected = {"Сумерки", "Сумерки2", "Сумерки3", "Сумерки4", "Бладшот", "Вперёд", "Отель Белград", "Джентельмены", "Человек-Невидимка", "Тролли", "Номер один", "Сумерки5"};
+        String[] actual = manager.addMovie("Сумерки5");
         assertArrayEquals(expected, actual);
     }
 
-//    @Test
-//    public void showLast5() {
-    //       MovieManager manager = new MovieManager();
-    //       Movie[] expected = {seventh, sixth, fifth, forth, third};
-    //      Movie[] actual = manager.returnLastViewed();
-    //     assertArrayEquals(expected, actual);
-    //  }
+    @Test
+    public void shouldShowFourLastAdded() {
+        MovieManager manager = new MovieManager(4);
+        String[] expected = {"Номер один", "Тролли", "Человек-Невидимка", "Джентельмены"};
+        String[] actual = manager.returnLastAddedFromTheEnd();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldShowLastAddedByDefault() {
+        MovieManager manager = new MovieManager();
+        String[] expected = {"Номер один", "Тролли", "Человек-Невидимка", "Джентельмены", "Отель Белград", "Вперёд", "Бладшот", "Сумерки4", "Сумерки3", "Сумерки2"};
+        String[] actual = manager.returnLastAddedFromTheEnd();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldShow11LastAdded() {
+        MovieManager manager = new MovieManager(11);
+        String[] expected = {"Номер один", "Тролли", "Человек-Невидимка", "Джентельмены", "Отель Белград", "Вперёд", "Бладшот", "Сумерки4", "Сумерки3", "Сумерки2", "Сумерки"};
+        String[] actual = manager.returnLastAddedFromTheEnd();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldShow10LastAdded() {
+        MovieManager manager = new MovieManager(12);
+        String[] expected = {"Номер один", "Тролли", "Человек-Невидимка", "Джентельмены", "Отель Белград", "Вперёд", "Бладшот", "Сумерки4", "Сумерки3", "Сумерки2"};
+        String[] actual = manager.returnLastAddedFromTheEnd();
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldShow1LastAdded() {
+        MovieManager manager = new MovieManager(1);
+        String[] expected = {"Номер один"};
+        String[] actual = manager.returnLastAddedFromTheEnd();
+        assertArrayEquals(expected, actual);
+    }
 }
 
