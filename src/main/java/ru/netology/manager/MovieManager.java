@@ -6,7 +6,19 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class MovieManager {
-    private String[] movies = {"Сумерки", "Сумерки2", "Сумерки3", "Сумерки4", "Бладшот", "Вперёд", "Отель Белград", "Джентельмены", "Человек-Невидимка", "Тролли", "Номер один"};
+    private String[] movies = {
+            "Сумерки",
+            "Сумерки2",
+            "Сумерки3",
+            "Сумерки4",
+            "Бладшот",
+            "Вперёд",
+            "Отель Белград",
+            "Джентельмены",
+//            "Человек-Невидимка",
+//            "Тролли",
+            "Номер один"
+    };
     private int resultLength;
 
     public MovieManager() {
@@ -41,11 +53,16 @@ public class MovieManager {
 
     public String[] returnLastAddedFromTheEnd() {
         int resultLength = getResultLength();
-        if (movies.length >= resultLength) {
-            resultLength = this.resultLength;
+        if (movies.length < 10) {
+            resultLength = movies.length;
         } else {
-            resultLength = 10;
+            resultLength = resultLength;
         }
+//        if (movies.length >= resultLength) {
+//            resultLength = this.resultLength;
+//        } else {
+//            resultLength = 10;
+//        }
         String[] result = new String[resultLength];
         for (int i = 0; i < result.length; i++) {
             int index = movies.length - i - 1;
