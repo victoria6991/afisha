@@ -6,19 +6,8 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class MovieManager {
-    private String[] movies = {
-            "Сумерки",
-            "Сумерки2",
-            "Сумерки3",
-            "Сумерки4",
-            "Бладшот",
-            "Вперёд",
-            "Отель Белград",
-            "Джентельмены",
-//            "Человек-Невидимка",
-//            "Тролли",
-            "Номер один"
-    };
+    private String[] movies = new String[0];
+
     private int resultLength;
 
     public MovieManager() {

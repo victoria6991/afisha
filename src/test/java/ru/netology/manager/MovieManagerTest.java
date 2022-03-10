@@ -1,5 +1,6 @@
 package ru.netology.manager;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -9,6 +10,15 @@ class MovieManagerTest {
     @Test
     public void shouldShowAll() {
         MovieManager manager = new MovieManager();
+        manager.addMovie("Сумерки");
+        manager.addMovie("Сумерки2");
+        manager.addMovie("Сумерки3");
+        manager.addMovie("Сумерки4");
+        manager.addMovie("Бладшот");
+        manager.addMovie("Вперёд");
+        manager.addMovie("Отель Белград");
+        manager.addMovie("Джентельмены");
+        manager.addMovie("Номер один");
         String[] expected = {
                 "Сумерки",
                 "Сумерки2",
@@ -27,6 +37,15 @@ class MovieManagerTest {
     @Test
     public void shouldShowAllWithAdded() {
         MovieManager manager = new MovieManager();
+        manager.addMovie("Сумерки");
+        manager.addMovie("Сумерки2");
+        manager.addMovie("Сумерки3");
+        manager.addMovie("Сумерки4");
+        manager.addMovie("Бладшот");
+        manager.addMovie("Вперёд");
+        manager.addMovie("Отель Белград");
+        manager.addMovie("Джентельмены");
+        manager.addMovie("Номер один");
         manager.addMovie("New Movie");
         String[] expected = {
                 "Сумерки",
@@ -47,6 +66,15 @@ class MovieManagerTest {
     @Test
     public void shouldTenReturnLastAddedWhenAmountIsAboveLimit() {
         MovieManager manager = new MovieManager();
+        manager.addMovie("Сумерки");
+        manager.addMovie("Сумерки2");
+        manager.addMovie("Сумерки3");
+        manager.addMovie("Сумерки4");
+        manager.addMovie("Бладшот");
+        manager.addMovie("Вперёд");
+        manager.addMovie("Отель Белград");
+        manager.addMovie("Джентельмены");
+        manager.addMovie("Номер один");
         String[] expected = {
                 "Номер один",
                 "Джентельмены",
@@ -64,6 +92,15 @@ class MovieManagerTest {
     @Test
     public void shouldReturnLastAddedWhenAmountIsUnderLimit() {
         MovieManager manager = new MovieManager(7);
+        manager.addMovie("Сумерки");
+        manager.addMovie("Сумерки2");
+        manager.addMovie("Сумерки3");
+        manager.addMovie("Сумерки4");
+        manager.addMovie("Бладшот");
+        manager.addMovie("Вперёд");
+        manager.addMovie("Отель Белград");
+        manager.addMovie("Джентельмены");
+        manager.addMovie("Номер один");
         String[] expected = {
                 "Номер один",
                 "Джентельмены",
@@ -79,6 +116,15 @@ class MovieManagerTest {
     @Test
     public void shouldReturnTenLastAddedFrom11() {
         MovieManager manager = new MovieManager();
+        manager.addMovie("Сумерки");
+        manager.addMovie("Сумерки2");
+        manager.addMovie("Сумерки3");
+        manager.addMovie("Сумерки4");
+        manager.addMovie("Бладшот");
+        manager.addMovie("Вперёд");
+        manager.addMovie("Отель Белград");
+        manager.addMovie("Джентельмены");
+        manager.addMovie("Номер один");
         manager.addMovie("New Movie");
         manager.addMovie("Test");
         String[] expected = {
@@ -99,6 +145,15 @@ class MovieManagerTest {
     @Test
     public void shouldShow1LastAdded() {
         MovieManager manager = new MovieManager(1);
+        manager.addMovie("Сумерки");
+        manager.addMovie("Сумерки2");
+        manager.addMovie("Сумерки3");
+        manager.addMovie("Сумерки4");
+        manager.addMovie("Бладшот");
+        manager.addMovie("Вперёд");
+        manager.addMovie("Отель Белград");
+        manager.addMovie("Джентельмены");
+        manager.addMovie("Номер один");
         manager.addMovie("New Movie");
         String[] expected = {"New Movie"};
         String[] actual = manager.returnLastAddedFromTheEnd();
@@ -108,6 +163,15 @@ class MovieManagerTest {
     @Test
     public void shouldShow5LastAdded() {
         MovieManager manager = new MovieManager(5);
+        manager.addMovie("Сумерки");
+        manager.addMovie("Сумерки2");
+        manager.addMovie("Сумерки3");
+        manager.addMovie("Сумерки4");
+        manager.addMovie("Бладшот");
+        manager.addMovie("Вперёд");
+        manager.addMovie("Отель Белград");
+        manager.addMovie("Джентельмены");
+        manager.addMovie("Номер один");
         manager.addMovie("New Movie");
         String[] expected = {
                 "New Movie",
